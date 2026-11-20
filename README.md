@@ -37,3 +37,4 @@ Mid exam এর জন্য **Bangla + English** মিশিয়ে লে�
 |---|---|
 | [quiz/01-Moodle-Quiz-ZeroR-OneR-CM-DT-Solutions](quiz/01-Moodle-Quiz-ZeroR-OneR-CM-DT-Solutions.md) | Moodle quiz এর 11টা প্রশ্নের step-by-step solution (answer key verified ✅) |
 | [quiz/02-Extra-Practice-Questions](quiz/02-Extra-Practice-Questions.md) | 15টা extra practice MCQ — ZeroR/OneR/CM/DT + Anomaly, Perceptron, Regression, Chi-square (hidden answers) |
+| [quiz/03-Moodle-Quiz2-Decision-Tree-Solutions](quiz/03-Moodle-Quiz2-Decision-Tree-Solutions.md) | Fall-2026 Quiz #2 (Decision Tree) এর 12টা প্রশ্নের step-by-step solution + exam patterns |
