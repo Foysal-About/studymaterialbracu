@@ -1,6 +1,6 @@
 # 04 — Perceptron (Linear Decision Boundary)
 
-> **Exam focus (teacher's note):** "02 Perceptron ~4 marks — mainly **MATH**."
+> **Exam focus (teacher's note):** "02 Perceptron ~4 marks — mainly **MATH**." Lecture-07: "Anomaly + Perceptron ⇒ Mainly Math + **Short Que** (4+4)" → Section **6A** এ short questions আছে।
 > Teacher board-এ একটা straight line দিয়ে `x` আর `–` points আলাদা করে লিখেছেন: **"limitation – linear"**।
 > মানে: (1) step-by-step weight update math পারতে হবে, (2) decision boundary বুঝতে হবে, (3) limitation (linearly separable না হলে কাজ করে না, যেমন XOR) জানতে হবে।
 
@@ -108,6 +108,9 @@ $$\boxed{w(i+1) = \begin{cases} w(i) & \text{if } w^T(i)\,y > 0 \quad \text{(cor
 | কখন update | প্রতিটা misclassified $y$ পাওয়ার **সাথে সাথেই** | পুরো iteration (epoch) শেষে **একবার** |
 | Formula | $w = w + \alpha\, y$ | $w = w + \alpha \sum_{\text{misclassified}} y$ |
 | Iteration-এর ভিতর $w$ | বদলাতে পারে | **একটাই $w$** পুরো iteration-এ |
+| Stability | প্রতিটা point এ weight লাফায় → **noisy / zig-zag** | সব error একসাথে average-এর মতো কাজ করে → **more stable, better convergence** ✅ |
+
+> **Lecture-07 (teacher):** "**Many at a time → more stable, better convergence**" — short question এ এটা লিখবে। কারণ: batch update পুরো dataset এর misclassified points এর sum নেয়, তাই একটা single noisy point weight কে ভুল দিকে টেনে নিতে পারে না।
 
 ### Step 5: Convergence (কখন থামবো)
 
@@ -393,6 +396,34 @@ $$w_5x_1^2 + w_4x_2^2 + w_3x_1x_2 + w_2x_1 + w_1x_2 + w_0 = 0$$
 - একাধিক valid solution থাকলে যেকোনো একটা দেয় (best margin না, SVM-এর মতো না)।
 - Convergence speed $\alpha$, initial weight, data order-এর উপর depend করে।
 - শুধু 2-class (binary) — multi-class-এর জন্য একাধিক perceptron লাগে।
+
+---
+
+## 6A. Short Questions (Lecture-07: "Mainly Math + Short Que")
+
+**Q1. Perceptron কী? / What is a perceptron?**
+Perceptron একটা linear binary classifier — weight vector $w$ শিখে $g(x) = w^Tx + w_0$ বানায়; $g(x) > 0$ হলে class 1, $< 0$ হলে class 2। এটা সবচেয়ে simple neural network (single neuron)।
+
+**Q2. Perceptron এর main limitation কী? / Main limitation?**
+এটা শুধু **linearly separable** data classify করতে পারে (একটা straight line / hyperplane দিয়ে আলাদা করা যায় এমন)। Non-linearly separable data তে (যেমন **XOR**) কখনো converge করে না।
+
+**Q3. One-at-a-time vs Many-at-a-time — কোনটা ভালো? কেন?**
+**Many-at-a-time** বেশি **stable** আর **better convergence** দেয়, কারণ পুরো iteration এর সব misclassified sample এর sum দিয়ে একবার update হয় — একটা single point weight কে এদিক-ওদিক টানতে পারে না। One-at-a-time প্রতিটা ভুলের পরপরই update করে, তাই weight zig-zag করে।
+
+**Q4. Learning rate $\alpha$ এর ভূমিকা কী?**
+$\alpha$ ঠিক করে প্রতিটা update এ weight কতটা বদলাবে। খুব ছোট → convergence ধীর; খুব বড় → overshoot / unstable। সাধারণত $0 < \alpha \le 1$।
+
+**Q5. Class 2 এর vector গুলো negate (−1 দিয়ে গুণ) করা হয় কেন?**
+তাহলে দুই class এর জন্য আলাদা condition লাগে না — সব $y$ এর জন্য একটাই নিয়ম: $w^Ty > 0$ হলে correct, নাহলে update। Algorithm simple হয়ে যায়।
+
+**Q6. Augmented vector / bias কেন লাগে?**
+$x_0 = 1$ যোগ করলে bias $w_0$ টা weight vector এর ভিতরে চলে আসে, ফলে $g(x) = w^Ty$ একটাই dot product। Bias ছাড়া boundary সবসময় origin দিয়ে যেতে বাধ্য হতো।
+
+**Q7. $\varphi$ (high-dimensional projection) কেন করা হয়?**
+Original space এ data linearly separable না হলে, $\varphi$ দিয়ে higher dimension এ নিলে ($x_1^2, x_1x_2, x_2^2$ ইত্যাদি) সেখানে linear boundary পাওয়া যেতে পারে — original space এ যেটা curved boundary।
+
+**Q8. কখন algorithm থামে? / When does it stop (converge)?**
+যখন একটা পুরো iteration এ কোনো sample misclassified হয় না (সব $w^Ty > 0$), অথবা max iteration শেষ হলে। Linearly separable হলে Perceptron Convergence Theorem অনুযায়ী finite step এ থামবেই।
 
 ---
 

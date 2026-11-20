@@ -1,6 +1,7 @@
 # 03 — Anomaly Detection (Gaussian Model) — Mid Exam Note
 
 > **Teacher's note:** "Anomaly Detection ~4 marks — MAINLY MATH (covariance + ...). Study 15e Question List and 15d step-by-step."
+> **Lecture-07 (14/11/26) note:** "Anomaly + Perceptron ⇒ Mainly **Math + Short Question** (4+4)। Anomaly ⇒ **Cov matrix দেওয়া থাকলে এর পরের part করতে হবে just, or, up to Cov matrix পর্যন্ত করতে হবে**।" → নিচের **Section 3A** এ দুইটা pattern-ই আলাদা করে practice করো।
 > তাই এই note এর **core** হলো Section 3–6 এর math (Univariate + Multivariate Gaussian, covariance matrix, inverse)। Theory (Section 8) short answer হিসেবে পড়ো।
 
 ---
@@ -206,6 +207,67 @@ $$p(10,5) = \frac{1}{(2\pi)^{2/2}\,\lvert\Sigma\rvert^{1/2}}\exp\!\left(-\frac12
 **Decision:** $8.6\times10^{-18} \ll \varepsilon = 0.1$ → **(10, 5) is an ANOMALY / Outlier → Faulty aircraft.** ✅
 
 > **কেন multivariate এ probability এত ছোট?** Training data তে heat আর vibration একসাথে বাড়ে (positive covariance)। কিন্তু test point এ heat বেশি (10) অথচ vibration কম (5) — এই **combination** টাই অস্বাভাবিক। Multivariate model correlation ধরতে পারে, তাই অনেক strongly flag করে।
+
+---
+
+## 3A. Exam Pattern Drills (Lecture-07) — দুই ধরনের প্রশ্ন
+
+Teacher বলেছেন exam এ পুরো 10 step নাও আসতে পারে। দুইটা pattern:
+
+| Pattern | প্রশ্নে কী দেওয়া থাকবে | তোমাকে কী করতে হবে |
+|---|---|---|
+| **A — "Cov matrix দেওয়া আছে"** | $\mu$, $\Sigma$, test point $x$, $\varepsilon$ | Step 6–10: $\lvert\Sigma\rvert$ → $\Sigma^{-1}$ → $(x-\mu)^T\Sigma^{-1}(x-\mu)$ → $p(x)$ → decision |
+| **B — "Up to Cov matrix"** | শুধু training data | Step 1–5: mean → deviation $a$ → $a'a$ → $\Sigma = a'a/m$ |
+
+### Pattern A Drill — $\Sigma$ given, শুধু পরের part
+
+**Given:** $\mu = \begin{bmatrix}5\\10\end{bmatrix}$, $\Sigma = \begin{bmatrix}4 & 2\\ 2 & 3\end{bmatrix}$, $\varepsilon = 0.01$. Test points: $x_1 = (8, 7)$ আর $x_2 = (6, 11)$।
+
+**Step 6 — Determinant:** $\lvert\Sigma\rvert = 4\times3 - 2\times2 = 12 - 4 = 8$, $\sqrt{8} = 2.828$
+
+**Step 7 — Inverse:** $\Sigma^{-1} = \dfrac{1}{8}\begin{bmatrix}3 & -2\\ -2 & 4\end{bmatrix} = \begin{bmatrix}0.375 & -0.25\\ -0.25 & 0.5\end{bmatrix}$
+
+**Constant part:** $\dfrac{1}{(2\pi)^{2/2}\sqrt{8}} = \dfrac{1}{2\pi \times 2.828} = \dfrac{1}{17.77} = 0.05627$
+
+**Test point $x_1 = (8, 7)$:**
+- Step 8: $x-\mu = [3,\ -3]$
+- $(x-\mu)^T\Sigma^{-1} = [\,3(0.375) + (-3)(-0.25),\ \ 3(-0.25) + (-3)(0.5)\,] = [\,1.875,\ -2.25\,]$
+- Step 9: $[1.875,\ -2.25]\cdot[3,\ -3] = 5.625 + 6.75 = \mathbf{12.375}$
+- Step 10: $p = 0.05627 \times e^{-12.375/2} = 0.05627 \times e^{-6.1875} = 0.05627 \times 0.002055 = \mathbf{1.16\times10^{-4}}$
+- **Decision:** $1.16\times10^{-4} < 0.01$ → **ANOMALY** ✅
+
+**Test point $x_2 = (6, 11)$:**
+- $x-\mu = [1,\ 1]$
+- $(x-\mu)^T\Sigma^{-1} = [\,0.375 - 0.25,\ \ -0.25 + 0.5\,] = [\,0.125,\ 0.25\,]$
+- $[0.125,\ 0.25]\cdot[1,\ 1] = \mathbf{0.375}$
+- $p = 0.05627 \times e^{-0.1875} = 0.05627 \times 0.829 = \mathbf{0.0466}$
+- **Decision:** $0.0466 \ge 0.01$ → **NORMAL** ✅
+
+> **খেয়াল করো:** $x_1$ এ feature 1 বেড়েছে কিন্তু feature 2 কমেছে — অথচ covariance positive (2), মানে দুইটা সাধারণত একসাথে বাড়ে। তাই এই combination অস্বাভাবিক → anomaly।
+
+### Pattern B Drill — শুধু Cov matrix পর্যন্ত
+
+**Given (m = 4):** $(2,4),\ (4,6),\ (6,10),\ (8,8)$
+
+**Step 1 — Mean:** $\mu_1 = \dfrac{2+4+6+8}{4} = 5$, $\mu_2 = \dfrac{4+6+10+8}{4} = 7$
+
+**Step 2–4 — Deviation আর products:**
+
+| $x_1$ | $x_2$ | $d_1 = x_1-5$ | $d_2 = x_2-7$ | $d_1^2$ | $d_2^2$ | $d_1 d_2$ |
+|---|---|---|---|---|---|---|
+| 2 | 4 | −3 | −3 | 9 | 9 | 9 |
+| 4 | 6 | −1 | −1 | 1 | 1 | 1 |
+| 6 | 10 | 1 | 3 | 1 | 9 | 3 |
+| 8 | 8 | 3 | 1 | 9 | 1 | 3 |
+| | | | **Sum** | **20** | **20** | **16** |
+
+$$a'a = \begin{bmatrix}20 & 16\\ 16 & 20\end{bmatrix}$$
+
+**Step 5 — Covariance matrix ($\div m = 4$):**
+
+$$\Sigma = \frac{1}{4}\begin{bmatrix}20 & 16\\ 16 & 20\end{bmatrix} = \begin{bmatrix}5 & 4\\ 4 & 5\end{bmatrix}$$
+
+> Check: $\Sigma$ সবসময় **symmetric** হবে, আর diagonal (variance) কখনো negative হবে না। এখানে off-diagonal 4 positive → দুইটা feature একসাথে বাড়ে।
 
 ---
 
