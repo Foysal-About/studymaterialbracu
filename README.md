@@ -30,3 +30,10 @@ Mid exam এর জন্য **Bangla + English** মিশিয়ে লে�
 ## Not in mid syllabus (পরে লাগবে)
 
 02b Minimum Distance Classifier, 02c Probabilistic Classifiers (MLE/MAP/Naive Bayes), 03 ACO on TSP, 04 Clustering, 06a Gradient Descent on Regression Variants, 06b Logistic Regression, 07 Data Preprocessing.
+
+## Quiz (Moodle-style MCQ)
+
+| File | কী আছে |
+|---|---|
+| [quiz/01-Moodle-Quiz-ZeroR-OneR-CM-DT-Solutions](quiz/01-Moodle-Quiz-ZeroR-OneR-CM-DT-Solutions.md) | Moodle quiz এর 11টা প্রশ্নের step-by-step solution (answer key verified ✅) |
+| [quiz/02-Extra-Practice-Questions](quiz/02-Extra-Practice-Questions.md) | 15টা extra practice MCQ — ZeroR/OneR/CM/DT + Anomaly, Perceptron, Regression, Chi-square (hidden answers) |
