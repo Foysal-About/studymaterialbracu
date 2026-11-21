@@ -35,7 +35,7 @@
 ## 1. Why Pattern Recognition and Data Mining?
 
 - **Explosive growth of data:** Terabytes → Petabytes → Exabytes।
-  - $1\text{ TB} = 1000^4$ Bytes, $1\text{ PB} = 1000^5$ B, $1\text{ EB} = 1000^6$ B
+  - $`1\text{ TB} = 1000^4`$ Bytes, $`1\text{ PB} = 1000^5`$ B, $`1\text{ EB} = 1000^6`$ B
 - **Data কোথা থেকে আসে (Major sources):**
   - **Business:** Web, E-commerce, Transactions, Stocks
   - **Science:** Remote sensing, Bioinformatics, Scientific simulation
@@ -152,7 +152,7 @@ Input Data ──► Data Pre-Processing ──► Data Mining ──► Post-Pr
 | **Classification** | Supervised | নতুন data কে আগে থেকে জানা **class/label** এ ফেলা (output = category) | Loan approve হবে কিনা, tumor cancerous/benign | Decision Tree (ID3), kNN |
 | **Regression** | Supervised | **continuous numeric value** predict করা | বাড়ির দাম, তাপমাত্রা | kNN Regression, Linear Regression |
 | **Clustering** | Unsupervised | label ছাড়া **similar data কে group** করা | Customer segmentation | K-Means |
-| **Association Rule / Frequent Pattern** | Unsupervised | কোন item গুলো **একসাথে ঘটে** তা খোঁজা ($X \Rightarrow Y$) | Market basket: Bread → Butter | Apriori, FP-Growth |
+| **Association Rule / Frequent Pattern** | Unsupervised | কোন item গুলো **একসাথে ঘটে** তা খোঁজা ($`X \Rightarrow Y`$) | Market basket: Bread → Butter | Apriori, FP-Growth |
 | **Anomaly / Outlier Detection** | Mostly unsupervised | সাধারণ pattern থেকে **আলাদা/অস্বাভাবিক** data খোঁজা | Credit card fraud | Outlier analysis |
 
 **Classification vs Regression (এক লাইনে):** Classification → output **discrete class** (Yes/No); Regression → output **continuous number** (e.g., 73.5)।
@@ -261,14 +261,16 @@ Slide example (Red vs Green):
 ## 10. Regression and kNN Regression
 
 **Regression** মানে numeric (continuous) value predict করা। Regression analysis এ একটা **dependent variable** (response) কে এক বা একাধিক **independent variable** (predictor) দিয়ে model করা হয়; "best fit" সাধারণত **least squares method** দিয়ে বের করা হয়।
-- Linear regression: $Y = b_0 + b_1 X$
-- Multiple linear regression: $Y = b_0 + b_1 X_1 + b_2 X_2$
+- Linear regression: $`Y = b_0 + b_1 X`$
+- Multiple linear regression: $`Y = b_0 + b_1 X_1 + b_2 X_2`$
 - ব্যবহার: prediction (time-series forecasting সহ), inference, hypothesis testing, causal relationship modeling।
 
 ### kNN Regression (k = 3 example in slides)
 Classification এর মতোই k nearest neighbor খোঁজো, কিন্তু **majority vote** এর বদলে neighbor দের target value এর **average (mean)** নাও:
 
-$$\hat{y} = \frac{1}{k}\sum_{i=1}^{k} y_i$$
+```math
+\hat{y} = \frac{1}{k}\sum_{i=1}^{k} y_i
+```
 
 উদাহরণ: k = 3 nearest বাড়ির দাম 50, 60, 70 লাখ → predicted দাম = 60 লাখ।
 
@@ -300,14 +302,14 @@ $$\hat{y} = \frac{1}{k}\sum_{i=1}^{k} y_i$$
 
 | Metric | Formula | মানে |
 |---|---|---|
-| **Accuracy** (recognition rate) | $\dfrac{TP + TN}{All}$ | মোট কত % সঠিক classify হয়েছে |
-| **Error rate** | $1 - \text{Accuracy} = \dfrac{FP + FN}{All}$ | কত % ভুল |
-| **Sensitivity** (= Recall, TP rate) | $\dfrac{TP}{AP}$ | actual positive এর কত % ধরা পড়েছে |
-| **Specificity** (TN rate) | $\dfrac{TN}{AN}$ | actual negative এর কত % ঠিক negative বলেছে |
-| **Precision** (Exactness) | $\dfrac{TP}{PP} = \dfrac{TP}{TP+FP}$ | যাদের positive বলেছি তাদের কত % আসলেই positive |
-| **Recall** (Completeness) | $\dfrac{TP}{AP} = \dfrac{TP}{TP+FN}$ | আসল positive দের কত % positive বলতে পেরেছি |
-| **F1 / F-score** | $\dfrac{2 \times P \times R}{P + R}$ | Precision ও Recall এর **harmonic mean** |
-| **$F_\beta$** | $\dfrac{(1+\beta^2)\, P \times R}{\beta^2 P + R}$ | Recall কে precision এর চেয়ে **β গুণ** বেশি weight দেয় |
+| **Accuracy** (recognition rate) | $`\dfrac{TP + TN}{All}`$ | মোট কত % সঠিক classify হয়েছে |
+| **Error rate** | $`1 - \text{Accuracy} = \dfrac{FP + FN}{All}`$ | কত % ভুল |
+| **Sensitivity** (= Recall, TP rate) | $`\dfrac{TP}{AP}`$ | actual positive এর কত % ধরা পড়েছে |
+| **Specificity** (TN rate) | $`\dfrac{TN}{AN}`$ | actual negative এর কত % ঠিক negative বলেছে |
+| **Precision** (Exactness) | $`\dfrac{TP}{PP} = \dfrac{TP}{TP+FP}`$ | যাদের positive বলেছি তাদের কত % আসলেই positive |
+| **Recall** (Completeness) | $`\dfrac{TP}{AP} = \dfrac{TP}{TP+FN}`$ | আসল positive দের কত % positive বলতে পেরেছি |
+| **F1 / F-score** | $`\dfrac{2 \times P \times R}{P + R}`$ | Precision ও Recall এর **harmonic mean** |
+| **$`F_\beta`$** | $`\dfrac{(1+\beta^2)\, P \times R}{\beta^2 P + R}`$ | Recall কে precision এর চেয়ে **β গুণ** বেশি weight দেয় |
 
 - Perfect score = **1.0**।
 - **Precision ও Recall এর মধ্যে inverse relationship** — একটা বাড়ালে অন্যটা সাধারণত কমে। তাই দুটোকে balance করতে **F1** ব্যবহার হয়।
@@ -320,12 +322,12 @@ $$\hat{y} = \frac{1}{k}\sum_{i=1}^{k} y_i$$
 | **no** | 412 (FP) | 2588 (TN) | 3000 (AN) |
 | Total | 7366 (PP) | 2634 (PN) | 10000 |
 
-- Accuracy $= (6954 + 2588)/10000 = 95.42\%$
-- Error rate $= (412 + 46)/10000 = 4.58\%$
-- Precision $= 6954/7366 = 94.41\%$
-- Recall / Sensitivity $= 6954/7000 = 99.34\%$
-- Specificity $= 2588/3000 = 86.27\%$
-- F1 $= 2(0.9441)(0.9934)/(0.9441 + 0.9934) \approx 0.968$
+- Accuracy $`= (6954 + 2588)/10000 = 95.42\%`$
+- Error rate $`= (412 + 46)/10000 = 4.58\%`$
+- Precision $`= 6954/7366 = 94.41\%`$
+- Recall / Sensitivity $`= 6954/7000 = 99.34\%`$
+- Specificity $`= 2588/3000 = 86.27\%`$
+- F1 $`= 2(0.9441)(0.9934)/(0.9441 + 0.9934) \approx 0.968`$
 
 ### Class Imbalance Problem (descriptive এ আসতে পারে!)
 যখন একটা class খুব **rare** (যেমন fraud, HIV-positive) — negative class majority, positive class minority। তখন **accuracy misleading**।
@@ -408,14 +410,14 @@ $$\hat{y} = \frac{1}{k}\sum_{i=1}^{k} y_i$$
 - **Applications:** Market basket analysis, cross-marketing, catalog design, sale campaign analysis, Web log (click stream) analysis, DNA sequence analysis।
 
 ### Basic Concepts
-- **Itemset:** এক বা একাধিক item এর set। **k-itemset** $X = \{x_1, \dots, x_k\}$
+- **Itemset:** এক বা একাধিক item এর set। **k-itemset** $`X = \{x_1, \dots, x_k\}`$
 - **Absolute support (support count):** itemset X কতবার ঘটেছে।
 - **Relative support (s):** কত fraction transaction এ X আছে = P(transaction contains X)।
 - **Frequent itemset:** X এর support ≥ **minsup** threshold।
 
-### Association Rule $X \Rightarrow Y$
-- **Support** $s = P(X \cup Y)$ = $\dfrac{\text{# transactions containing both } X \text{ and } Y}{\text{total transactions}}$
-- **Confidence** $c = P(Y \mid X)$ = $\dfrac{\text{support}(X \cup Y)}{\text{support}(X)}$
+### Association Rule $`X \Rightarrow Y`$
+- **Support** $`s = P(X \cup Y)`$ = $`\dfrac{\text{# transactions containing both } X \text{ and } Y}{\text{total transactions}}`$
+- **Confidence** $`c = P(Y \mid X)`$ = $`\dfrac{\text{support}(X \cup Y)}{\text{support}(X)}`$
 - লক্ষ্য: **minimum support** এবং **minimum confidence** পূরণ করে এমন সব rule বের করা।
 
 ### Worked Example (slide 31–32)
@@ -489,7 +491,7 @@ Instrument faulty, human/computer error, transmission error এর কারণ�
    - Numeric হলে **interpolation** (e.g., Lagrange formula)
 
 ### Data Reduction techniques
-- **Regression:** data কে একটা equation ($Y = b_0 + b_1X$) দিয়ে represent — শুধু parameter store।
+- **Regression:** data কে একটা equation ($`Y = b_0 + b_1X`$) দিয়ে represent — শুধু parameter store।
 - **Histogram:** data কে **buckets** এ ভাগ করে প্রতিটার average/sum store। Partitioning: **Equal-width** (সমান range) বা **Equal-frequency/equal-depth** (প্রতিটায় সমান সংখ্যক data)।
 - **Clustering:** শুধু cluster representation (centroid, diameter) store — data clustered হলে effective, "smeared" হলে না।
 - **Sampling:** বড় data set N কে represent করতে ছোট sample s নেওয়া → algorithm sub-linear complexity তে চলে। Key: **representative subset**।
@@ -500,17 +502,21 @@ Instrument faulty, human/computer error, transmission error এর কারণ�
 
 ### Normalization (Data Transformation)
 
-**Min-max normalization** — $[new\_min, new\_max]$ range এ আনা:
+**Min-max normalization** — $`[new\_min, new\_max]`$ range এ আনা:
 
-$$v' = \frac{v - min_A}{max_A - min_A}(new\_max_A - new\_min_A) + new\_min_A$$
+```math
+v' = \frac{v - min_A}{max_A - min_A}(new\_max_A - new\_min_A) + new\_min_A
+```
 
-Example: income range \$12,000 – \$98,000 → [0.0, 1.0]। \$73,000 → $\frac{73000-12000}{98000-12000} \approx 0.709$ (slide এ textbook অনুযায়ী 0.716 লেখা — textbook এ value \$73,600 ধরা হয়েছে, তখন ≈ 0.716)।
+Example: income range \$12,000 – \$98,000 → [0.0, 1.0]। \$73,000 → $`\frac{73000-12000}{98000-12000} \approx 0.709`$ (slide এ textbook অনুযায়ী 0.716 লেখা — textbook এ value \$73,600 ধরা হয়েছে, তখন ≈ 0.716)।
 
-**Z-score normalization** ($\mu$ = mean, $\sigma$ = standard deviation):
+**Z-score normalization** ($`\mu`$ = mean, $`\sigma`$ = standard deviation):
 
-$$v' = \frac{v - \mu_A}{\sigma_A}$$
+```math
+v' = \frac{v - \mu_A}{\sigma_A}
+```
 
-Example: $\mu = 54{,}000$, $\sigma = 16{,}000$ → \$73,600 → $\frac{73600 - 54000}{16000} = 1.225$
+Example: $`\mu = 54{,}000`$, $`\sigma = 16{,}000`$ → \$73,600 → $`\frac{73600 - 54000}{16000} = 1.225`$
 
 **কেন normalization?** kNN, clustering এর মতো **distance-based** method এ বড় range এর attribute distance কে dominate করে; normalization সব attribute কে সমান গুরুত্ব দেয়।
 
@@ -523,35 +529,39 @@ Example: $\mu = 54{,}000$, $\sigma = 16{,}000$ → \$73,600 → $\frac{73600 - 5
 - n-dimensional N টা data vector থেকে **k ≤ n** টা **orthogonal vector (principal components)** খোঁজা যা data কে সবচেয়ে ভালো represent করে।
 - Covariance matrix এর **eigenvectors** নতুন space define করে।
 - ফলাফল: **dimensionality reduction** (feature সংখ্যা কমে)।
-- Slide example: 2-D point $(x_1, x_2)$ → maximum variance vector **e** এর উপর project → শুধু **1-D (z)** দিয়ে represent।
+- Slide example: 2-D point $`(x_1, x_2)`$ → maximum variance vector **e** এর উপর project → শুধু **1-D (z)** দিয়ে represent।
 - (পিছনের math: covariance matrix, eigenvalues, eigenvectors, SVD, projection)
 
 ### Covariance (numeric data)
 
-$$Cov(A,B) = E[(A-\bar{A})(B-\bar{B})] = \frac{\sum_{i=1}^{n}(a_i - \bar{A})(b_i - \bar{B})}{n}$$
+```math
+Cov(A,B) = E[(A-\bar{A})(B-\bar{B})] = \frac{\sum_{i=1}^{n}(a_i - \bar{A})(b_i - \bar{B})}{n}
+```
 
-Simplified: $Cov(A,B) = E(A \cdot B) - \bar{A}\,\bar{B}$
+Simplified: $`Cov(A,B) = E(A \cdot B) - \bar{A}\,\bar{B}`$
 
 | Value | মানে |
 |---|---|
-| $Cov > 0$ | A ও B একসাথে বাড়ে (positive) |
-| $Cov < 0$ | A বাড়লে B কমে (negative) |
-| $Cov = 0$ | independent হলে Cov = 0, **কিন্তু উল্টোটা সত্য না** (Cov = 0 মানেই independent না; শুধু multivariate normal এর মতো assumption থাকলে) |
+| $`Cov > 0`$ | A ও B একসাথে বাড়ে (positive) |
+| $`Cov < 0`$ | A বাড়লে B কমে (negative) |
+| $`Cov = 0`$ | independent হলে Cov = 0, **কিন্তু উল্টোটা সত্য না** (Cov = 0 মানেই independent না; শুধু multivariate normal এর মতো assumption থাকলে) |
 
 **Example (slide 49):** Stock A, B: (2,5), (3,8), (5,10), (4,11), (6,14)
-- $E(A) = 20/5 = 4$, $E(B) = 48/5 = 9.6$
-- $E(A \cdot B) = (10 + 24 + 50 + 44 + 84)/5 = 212/5 = 42.4$
-- $Cov(A,B) = 42.4 - 4 \times 9.6 = 4 > 0$ → **A ও B একসাথে rise করে।**
+- $`E(A) = 20/5 = 4`$, $`E(B) = 48/5 = 9.6`$
+- $`E(A \cdot B) = (10 + 24 + 50 + 44 + 84)/5 = 212/5 = 42.4`$
+- $`Cov(A,B) = 42.4 - 4 \times 9.6 = 4 > 0`$ → **A ও B একসাথে rise করে।**
 
 ### Correlation Coefficient (Pearson's)
 
-$$r_{A,B} = \frac{\sum_{i=1}^{n}(a_i - \bar{A})(b_i - \bar{B})}{n\,\sigma_A \sigma_B} = \frac{Cov(A,B)}{\sigma_A \sigma_B}$$
+```math
+r_{A,B} = \frac{\sum_{i=1}^{n}(a_i - \bar{A})(b_i - \bar{B})}{n\,\sigma_A \sigma_B} = \frac{Cov(A,B)}{\sigma_A \sigma_B}
+```
 
 - সবসময় **[−1, 1]** এর মধ্যে।
-- $r > 0$: positively correlated (যত বেশি, তত strong); $r = 0$: uncorrelated (slide: independent); $r < 0$: negatively correlated।
+- $`r > 0`$: positively correlated (যত বেশি, তত strong); $`r = 0`$: uncorrelated (slide: independent); $`r < 0`$: negatively correlated।
 - Scatter plot দিয়ে visually correlation দেখা যায় (−1 থেকে 1)।
 - **Covariance vs Correlation:** Correlation হলো **normalized covariance** — scale-independent, তাই তুলনা করা সহজ।
-- **Non-numeric (nominal/ordinal) data** হলে → **$\chi^2$ (chi-square) test**।
+- **Non-numeric (nominal/ordinal) data** হলে → **$`\chi^2`$ (chi-square) test**।
 
 ---
 
@@ -646,14 +656,14 @@ Unsupervised learning এ class label **unknown**; লক্ষ্য data ত�
 Advantages: simple, little tuning। Need: feature normalization।
 
 ### Q7. How does kNN regression differ from kNN classification?
-**Answer:** দুটোতেই k nearest neighbor খোঁজা হয়। Classification এ neighbor দের **majority vote** (discrete class), regression এ neighbor দের target value এর **average** (continuous value): $\hat{y} = \frac{1}{k}\sum y_i$। দুটোতেই feature normalization গুরুত্বপূর্ণ।
+**Answer:** দুটোতেই k nearest neighbor খোঁজা হয়। Classification এ neighbor দের **majority vote** (discrete class), regression এ neighbor দের target value এর **average** (continuous value): $`\hat{y} = \frac{1}{k}\sum y_i`$। দুটোতেই feature normalization গুরুত্বপূর্ণ।
 
 ### Q8. Define accuracy, precision, recall and F1. Why is accuracy not enough?
 **Answer:**
-- Accuracy $= (TP+TN)/All$ — মোট কত % সঠিক।
-- Precision $= TP/(TP+FP)$ — **exactness**: positive predict করাদের কত % আসলেই positive।
-- Recall (sensitivity) $= TP/(TP+FN)$ — **completeness**: actual positive দের কত % ধরা পড়েছে।
-- F1 $= 2PR/(P+R)$ — precision ও recall এর harmonic mean।
+- Accuracy $`= (TP+TN)/All`$ — মোট কত % সঠিক।
+- Precision $`= TP/(TP+FP)`$ — **exactness**: positive predict করাদের কত % আসলেই positive।
+- Recall (sensitivity) $`= TP/(TP+FN)`$ — **completeness**: actual positive দের কত % ধরা পড়েছে।
+- F1 $`= 2PR/(P+R)`$ — precision ও recall এর harmonic mean।
 **Accuracy যথেষ্ট না** কারণ **class imbalance problem**: fraud বা HIV-positive এর মতো rare class এ সবকিছু negative বললেও accuracy খুব বেশি আসে, অথচ একটা positive ও ধরা পড়ে না। তাই precision, recall, specificity, F1 দরকার। Precision ও recall এর inverse relationship থাকায় F1 দিয়ে balance করা হয়।
 (Example দাও: 6954/46/412/2588 → Acc 95.42%, P 94.41%, R 99.34%।)
 
@@ -671,7 +681,7 @@ Categories: partitioning (K-means, K-medoids), hierarchical (BIRCH, Chameleon), 
 
 ### Q12. What is frequent pattern analysis? Define support and confidence with an example.
 **Answer:** Frequent pattern হলো data set এ বারবার ঘটা itemset/subsequence/substructure (Agrawal, Imielinski & Swami প্রথম propose করেন)। এর লক্ষ্য data এর inherent regularity খোঁজা — যেমন কোন products একসাথে কেনা হয় (market basket analysis)।
-Rule $X \Rightarrow Y$ এর জন্য — **Support** $= P(X \cup Y)$ (X ও Y দুটোই আছে এমন transaction এর fraction), **Confidence** $= P(Y|X) = sup(X \cup Y)/sup(X)$।
+Rule $`X \Rightarrow Y`$ এর জন্য — **Support** $`= P(X \cup Y)`$ (X ও Y দুটোই আছে এমন transaction এর fraction), **Confidence** $`= P(Y|X) = sup(X \cup Y)/sup(X)`$।
 Example (5 transactions): Beer 3 বার, Diaper 4 বার, {Beer, Diaper} 3 বার → Beer ⇒ Diaper (support 60%, confidence 100%); Diaper ⇒ Beer (60%, 75%)। minsup = minconf = 50% হলে দুটোই strong rule।
 Algorithm: **Apriori** (candidate generation-and-test), FP-Growth, ECLAT।
 
@@ -686,13 +696,13 @@ Major tasks: (1) **Data cleaning** — missing value fill, noise smooth, outlier
 **Answer:** Sampling মানে বড় data set N কে represent করতে ছোট representative subset s নেওয়া, যাতে mining algorithm দ্রুত চলে। **SRSWOR**: নির্বাচিত object population থেকে বাদ যায়, একাধিকবার আসে না। **SRSWR**: নির্বাচিত object ফেরত যায়, একাধিকবার আসতে পারে। **Stratified**: data কে partition করে প্রতিটা থেকে proportional sample — skewed data তে কাজে লাগে (simple random sampling skew এ খারাপ করে)।
 
 ### Q16. What is normalization? Why is it important?
-**Answer:** Attribute value গুলোকে একটা common scale এ আনা। **Min-max:** $v' = \frac{v-min}{max-min}(new\_max - new\_min) + new\_min$; **Z-score:** $v' = (v-\mu)/\sigma$ (e.g., μ = 54,000, σ = 16,000 → 73,600 ↦ 1.225)। Distance-based method (kNN, K-means) এ বড় range এর attribute (income) ছোট range এর attribute (age) কে dominate করে — normalization এটা ঠেকায়।
+**Answer:** Attribute value গুলোকে একটা common scale এ আনা। **Min-max:** $`v' = \frac{v-min}{max-min}(new\_max - new\_min) + new\_min`$; **Z-score:** $`v' = (v-\mu)/\sigma`$ (e.g., μ = 54,000, σ = 16,000 → 73,600 ↦ 1.225)। Distance-based method (kNN, K-means) এ বড় range এর attribute (income) ছোট range এর attribute (age) কে dominate করে — normalization এটা ঠেকায়।
 
 ### Q17. What is PCA? / EDA কী?
 **Answer:** **EDA** (Exploratory Data Analysis) statistical tools দিয়ে data বোঝে — "explaining the past"; data mining "predicting the future"। **PCA** একটা EDA/dimensionality reduction technique: covariance matrix এর eigenvector ব্যবহার করে k ≤ n টা orthogonal **principal component** খোঁজে যারা data এর **maximum variance** ধরে রাখে; data কে এই ছোট space এ project করে feature সংখ্যা কমায় (e.g., 2-D → 1-D)।
 
 ### Q18. Explain covariance and correlation. Is zero covariance always independence?
-**Answer:** Covariance দুই numeric attribute একসাথে কীভাবে বদলায় তা মাপে: Cov > 0 → একসাথে বাড়ে; Cov < 0 → একটা বাড়লে অন্যটা কমে। Correlation coefficient $r = Cov/(\sigma_A\sigma_B)$, সবসময় [−1, 1] এর মধ্যে — normalized, তাই strength তুলনা করা যায়। Independent হলে Cov = 0, কিন্তু **Cov = 0 মানেই independent না** (শুধু multivariate normal এর মতো extra assumption এ)। Nominal data র জন্য $\chi^2$ test।
+**Answer:** Covariance দুই numeric attribute একসাথে কীভাবে বদলায় তা মাপে: Cov > 0 → একসাথে বাড়ে; Cov < 0 → একটা বাড়লে অন্যটা কমে। Correlation coefficient $`r = Cov/(\sigma_A\sigma_B)`$, সবসময় [−1, 1] এর মধ্যে — normalized, তাই strength তুলনা করা যায়। Independent হলে Cov = 0, কিন্তু **Cov = 0 মানেই independent না** (শুধু multivariate normal এর মতো extra assumption এ)। Nominal data র জন্য $`\chi^2`$ test।
 Example: stock (2,5),(3,8),(5,10),(4,11),(6,14) → Cov = 42.4 − 4×9.6 = 4 > 0 → একসাথে rise।
 
 ### Q19. What is ubiquitous and invisible data mining?
@@ -724,9 +734,9 @@ Protection methods: (1) sensitive IDs remove; (2) security-enhancing — multi-l
    - kNN k = 3 → Red, k = 7 → Green
 6. **Famous quote ব্যবহার করো:** "We are drowning in data, but starving for knowledge" — John Naisbitt। Introduction এ দারুণ লাগে।
 7. **Formula গুলো মনে রাখো (এক জায়গায়):**
-   - Accuracy $= \frac{TP+TN}{All}$, Precision $= \frac{TP}{TP+FP}$, Recall $= \frac{TP}{TP+FN}$, F1 $= \frac{2PR}{P+R}$
-   - Support $= P(X \cup Y)$, Confidence $= P(Y|X)$
-   - Min-max, Z-score, $Cov = E(AB) - \bar{A}\bar{B}$, $r = \frac{Cov}{\sigma_A\sigma_B}$
+   - Accuracy $`= \frac{TP+TN}{All}`$, Precision $`= \frac{TP}{TP+FP}`$, Recall $`= \frac{TP}{TP+FN}`$, F1 $`= \frac{2PR}{P+R}`$
+   - Support $`= P(X \cup Y)`$, Confidence $`= P(Y|X)`$
+   - Min-max, Z-score, $`Cov = E(AB) - \bar{A}\bar{B}`$, $`r = \frac{Cov}{\sigma_A\sigma_B}`$
 8. **Common traps:**
    - Simple query/search **data mining না**।
    - Data mining = KDD এর **একটা step**, পুরো KDD না।

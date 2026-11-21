@@ -12,13 +12,13 @@
 | OneR error | প্রতিটা partition এ **minority class এর count** = error। সব partition এর error যোগ করো। সবচেয়ে কম total error যার → সেই predictor |
 | OneR prediction | প্রতিটা partition এ **majority class** predict করে |
 | ZeroR | সবসময় **majority class** predict করে, কোনো feature দেখে না |
-| Precision | $\dfrac{TP}{TP+FP}$ |
-| Recall | $\dfrac{TP}{TP+FN}$ |
-| F1 | $\dfrac{2 \cdot P \cdot R}{P+R}$ |
-| Entropy | $H = -p\log_2 p - q\log_2 q$ |
-| Combined (weighted) entropy | $\sum \dfrac{n_i}{n} H(S_i)$ |
-| Gini (course version) | $p^2 + q^2$ (বেশি মানে বেশি pure) |
-| Chi-square (per class, per node) | $\sqrt{\dfrac{(\text{Actual}-\text{Expected})^2}{\text{Expected}}}$; Expected = node size × parent এর ratio। সব যোগ = total |
+| Precision | $`\dfrac{TP}{TP+FP}`$ |
+| Recall | $`\dfrac{TP}{TP+FN}`$ |
+| F1 | $`\dfrac{2 \cdot P \cdot R}{P+R}`$ |
+| Entropy | $`H = -p\log_2 p - q\log_2 q`$ |
+| Combined (weighted) entropy | $`\sum \dfrac{n_i}{n} H(S_i)`$ |
+| Gini (course version) | $`p^2 + q^2`$ (বেশি মানে বেশি pure) |
+| Chi-square (per class, per node) | $`\sqrt{\dfrac{(\text{Actual}-\text{Expected})^2}{\text{Expected}}}`$; Expected = node size × parent এর ratio। সব যোগ = total |
 
 > **YES = Positive class** (TP মানে actual YES, predicted YES)।
 
@@ -180,13 +180,13 @@ F1 = 2PR/(P+R) — P undefined, তাই F1 ও **Indefinite**।
 
 **Step 2 — S1 (8 + 5 = 13 instances):**
 - Expected YES = 13 × 1/3 = 4.333, Expected NO = 13 × 2/3 = 8.667
-- YES: $\sqrt{(8-4.333)^2/4.333} = \sqrt{13.44/4.333} = \sqrt{3.103} = 1.762$
-- NO: $\sqrt{(5-8.667)^2/8.667} = \sqrt{13.44/8.667} = \sqrt{1.551} = 1.245$
+- YES: $`\sqrt{(8-4.333)^2/4.333} = \sqrt{13.44/4.333} = \sqrt{3.103} = 1.762`$
+- NO: $`\sqrt{(5-8.667)^2/8.667} = \sqrt{13.44/8.667} = \sqrt{1.551} = 1.245`$
 
 **Step 3 — S2 (2 + 15 = 17 instances):**
 - Expected YES = 17 × 1/3 = 5.667, Expected NO = 17 × 2/3 = 11.333
-- YES: $\sqrt{(2-5.667)^2/5.667} = \sqrt{2.373} = 1.540$
-- NO: $\sqrt{(15-11.333)^2/11.333} = \sqrt{1.186} = 1.089$
+- YES: $`\sqrt{(2-5.667)^2/5.667} = \sqrt{2.373} = 1.540`$
+- NO: $`\sqrt{(15-11.333)^2/11.333} = \sqrt{1.186} = 1.089`$
 
 **Step 4 — Total:** 1.762 + 1.245 + 1.540 + 1.089 = **5.64**
 
@@ -206,13 +206,13 @@ F1 = 2PR/(P+R) — P undefined, তাই F1 ও **Indefinite**।
 ### কিভাবে solve করবে
 
 **Step 1 — H(S1), 7 instances (5 Yes, 2 No):**
-$H(S_1) = -\frac57\log_2\frac57 - \frac27\log_2\frac27 = 0.347 + 0.516 = 0.863$
+$`H(S_1) = -\frac57\log_2\frac57 - \frac27\log_2\frac27 = 0.347 + 0.516 = 0.863`$
 
 **Step 2 — H(S2), 6 instances (3 Yes, 3 No):**
-3:3 সমান → $H(S_2) = 1$ (maximum impurity)
+3:3 সমান → $`H(S_2) = 1`$ (maximum impurity)
 
 **Step 3 — Weighted (combined) entropy:**
-$\frac{7}{13}(0.863) + \frac{6}{13}(1) = 0.465 + 0.462 = $ **0.93**
+$`\frac{7}{13}(0.863) + \frac{6}{13}(1) = 0.465 + 0.462 =`$  **0.93**
 
 > Check: split এর আগে parent (8Y, 5N) এর entropy = 0.961। Split এর পরে 0.93 — কমেছে, তাই Information Gain = 0.961 − 0.926 = 0.035।
 
@@ -286,9 +286,9 @@ $\frac{7}{13}(0.863) + \frac{6}{13}(1) = 0.465 + 0.462 = $ **0.93**
 
 **Step 1:** Total = 25 → p(YES) = 1/25 = 0.04, q(NO) = 24/25 = 0.96
 
-**Step 2:** Course এর Gini = $p^2 + q^2$ = 0.04² + 0.96² = 0.0016 + 0.9216 = **0.9232 ≈ 0.92**
+**Step 2:** Course এর Gini = $`p^2 + q^2`$ = 0.04² + 0.96² = 0.0016 + 0.9216 = **0.9232 ≈ 0.92**
 
-> ⚠️ অন্য বইয়ে Gini impurity = $1 - (p^2+q^2) = 0.077$ — কিন্তু option এ নেই। এই course **$p^2 + q^2$** version use করে।
+> ⚠️ অন্য বইয়ে Gini impurity = $`1 - (p^2+q^2) = 0.077`$ — কিন্তু option এ নেই। এই course **$`p^2 + q^2`$** version use করে।
 
 ---
 
@@ -311,8 +311,8 @@ $\frac{7}{13}(0.863) + \frac{6}{13}(1) = 0.465 + 0.462 = $ **0.93**
 - Expected YES = 20 × 0.444 = 8.889, Expected NO = 20 × 0.556 = 11.111
 
 **Step 3 — Chi values:**
-- YES: $\sqrt{(20-8.889)^2/8.889} = \sqrt{123.46/8.889} = \sqrt{13.889} = 3.727$
-- NO: $\sqrt{(0-11.111)^2/11.111} = \sqrt{11.111} = 3.333$
+- YES: $`\sqrt{(20-8.889)^2/8.889} = \sqrt{123.46/8.889} = \sqrt{13.889} = 3.727`$
+- NO: $`\sqrt{(0-11.111)^2/11.111} = \sqrt{11.111} = 3.333`$
 
 **Step 4:** Total for S1 = 3.727 + 3.333 = **7.06**
 

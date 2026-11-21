@@ -54,7 +54,7 @@ A. 0.863 B. 0.940 C. 0.985 D. 1.00
 
 <details><summary>Answer দেখো</summary>
 
-$H = -\frac{9}{14}\log_2\frac{9}{14} - \frac{5}{14}\log_2\frac{5}{14} = 0.410 + 0.530 = $ **0.940** → **B**
+$`H = -\frac{9}{14}\log_2\frac{9}{14} - \frac{5}{14}\log_2\frac{5}{14} = 0.410 + 0.530 =`$  **0.940** → **B**
 </details>
 
 ### E5. Information Gain
@@ -69,7 +69,7 @@ Weighted = (8/14)(0.811) + (6/14)(1) = 0.464 + 0.429 = 0.892
 IG = 0.940 − 0.892 = **0.048** → **A** (Play-Golf এর **Windy** attribute এর মতো)
 </details>
 
-### E6. Gini of a split (course formula $p^2+q^2$)
+### E6. Gini of a split (course formula $`p^2+q^2`$)
 S1 = {6Y, 2N}, S2 = {3Y, 3N}. Weighted Gini of the split = ?
 
 A. 0.429 B. 0.500 C. 0.571 D. 0.625
@@ -102,7 +102,7 @@ A. 0.615 B. 0.541 C. 0.667 D. 0.588
 
 <details><summary>Answer দেখো</summary>
 
-$F_\beta = \dfrac{(1+\beta^2)PR}{\beta^2 P + R} = \dfrac{5(0.8)(0.5)}{4(0.8)+0.5} = \dfrac{2}{3.7} = $ **0.541** → **B**
+$`F_\beta = \dfrac{(1+\beta^2)PR}{\beta^2 P + R} = \dfrac{5(0.8)(0.5)}{4(0.8)+0.5} = \dfrac{2}{3.7} =`$  **0.541** → **B**
 (β = 2 → recall কে বেশি গুরুত্ব দেয়, তাই F1 = 0.615 এর চেয়ে কম।)
 </details>
 
@@ -117,7 +117,7 @@ Specificity = TN/(TN + FP) = 30/40 = **0.75** → **C**
 </details>
 
 ### E10. Pure node
-A node has 0 YES and 6 NO. Entropy and Gini ($p^2+q^2$) are:
+A node has 0 YES and 6 NO. Entropy and Gini ($`p^2+q^2`$) are:
 
 A. 1, 0 B. 0, 1 C. 0, 0 D. 1, 0.5
 
@@ -131,22 +131,22 @@ Pure node → Entropy = **0**, Gini (p²+q²) = 0² + 1² = **1** → **B**
 ## Part B — Anomaly, Perceptron, Regression, Chi-square test (bonus)
 
 ### E11. Anomaly — determinant and inverse
-$\Sigma = \begin{bmatrix}9 & 3\\ 3 & 5\end{bmatrix}$. Find $\lvert\Sigma\rvert$ and $\Sigma^{-1}$.
+$`\Sigma = \begin{bmatrix}9 & 3\\ 3 & 5\end{bmatrix}`$. Find $`\lvert\Sigma\rvert`$ and $`\Sigma^{-1}`$.
 
 <details><summary>Answer দেখো</summary>
 
-$\lvert\Sigma\rvert = 9(5) - 3(3) = 45 - 9 = $ **36**
+$`\lvert\Sigma\rvert = 9(5) - 3(3) = 45 - 9 =`$  **36**
 
-$\Sigma^{-1} = \dfrac{1}{36}\begin{bmatrix}5 & -3\\ -3 & 9\end{bmatrix} = \begin{bmatrix}0.139 & -0.083\\ -0.083 & 0.25\end{bmatrix}$
+$`\Sigma^{-1} = \dfrac{1}{36}\begin{bmatrix}5 & -3\\ -3 & 9\end{bmatrix} = \begin{bmatrix}0.139 & -0.083\\ -0.083 & 0.25\end{bmatrix}`$
 </details>
 
 ### E12. Perceptron — one update
-$w = [1, 1, 1]$, normalized augmented sample $y = [1, -2, 1]$, $\alpha = 0.5$. Is $y$ misclassified? What is the new $w$?
+$`w = [1, 1, 1]`$, normalized augmented sample $`y = [1, -2, 1]`$, $`\alpha = 0.5`$. Is $`y`$ misclassified? What is the new $`w`$?
 
 <details><summary>Answer দেখো</summary>
 
-$w^Ty = 1 - 2 + 1 = 0 \le 0$ → **misclassified** (boundary এর উপর = correct না)
-$w_{new} = w + \alpha y = [1, 1, 1] + 0.5[1, -2, 1] = $ **[1.5, 0, 1.5]**
+$`w^Ty = 1 - 2 + 1 = 0 \le 0`$ → **misclassified** (boundary এর উপর = correct না)
+$`w_{new} = w + \alpha y = [1, 1, 1] + 0.5[1, -2, 1] =`$  **[1.5, 0, 1.5]**
 </details>
 
 ### E13. Least-squares regression line
@@ -154,19 +154,19 @@ x = [1, 2, 3, 4], y = [2, 4, 5, 7]. Find the line and predict y at x = 5.
 
 <details><summary>Answer দেখো</summary>
 
-$\bar x = 2.5,\ \bar y = 4.5$
-$\sum(x-\bar x)(y-\bar y) = 3.75 + 0.25 + 0.25 + 3.75 = 8$, $\sum(x-\bar x)^2 = 5$
-$m = 8/5 = 1.6$, $c = 4.5 - 1.6(2.5) = 0.5$ → **ŷ = 1.6x + 0.5**
+$`\bar x = 2.5,\ \bar y = 4.5`$
+$`\sum(x-\bar x)(y-\bar y) = 3.75 + 0.25 + 0.25 + 3.75 = 8`$, $`\sum(x-\bar x)^2 = 5`$
+$`m = 8/5 = 1.6`$, $`c = 4.5 - 1.6(2.5) = 0.5`$ → **ŷ = 1.6x + 0.5**
 x = 5 → ŷ = **8.5**
 </details>
 
 ### E14. Gradient descent — one single-mode step
-$\theta_0 = 0,\ \theta_1 = 0,\ \alpha = 0.01$, first sample (x = 1, y = 2). Find new $\theta_0, \theta_1$.
+$`\theta_0 = 0,\ \theta_1 = 0,\ \alpha = 0.01`$, first sample (x = 1, y = 2). Find new $`\theta_0, \theta_1`$.
 
 <details><summary>Answer দেখো</summary>
 
 Prediction = 0 + 0(1) = 0, error = 0 − 2 = −2
-$\theta_0 = 0 - 0.01(-2) = $ **0.02**, $\theta_1 = 0 - 0.01(-2)(1) = $ **0.02**
+$`\theta_0 = 0 - 0.01(-2) =`$  **0.02**, $`\theta_1 = 0 - 0.01(-2)(1) =`$  **0.02**
 </details>
 
 ### E15. Chi-square test of independence (EDA)
@@ -175,7 +175,7 @@ $\theta_0 = 0 - 0.01(-2) = $ **0.02**, $\theta_1 = 0 - 0.01(-2)(1) = $ **0.02**
 <details><summary>Answer দেখো</summary>
 
 Expected প্রতিটা cell = (50 × 50)/100 = 25
-$\chi^2 = \sum \frac{(O-E)^2}{E} = 4 \times \frac{(5)^2}{25} = $ **4.0**
+$`\chi^2 = \sum \frac{(O-E)^2}{E} = 4 \times \frac{(5)^2}{25} =`$  **4.0**
 df = (2−1)(2−1) = 1, critical value = 3.841
 4.0 > 3.841 → **Reject H₀** → result আর gender **independent না** (related)।
 </details>

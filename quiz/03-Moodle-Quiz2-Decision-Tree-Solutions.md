@@ -3,7 +3,7 @@
 > নিচে Moodle Quiz #2 এর প্রতিটা প্রশ্ন **হুবহু (full question + সব option + marks)** দেওয়া, তারপর **Answer** আর **কিভাবে solve করবে (step by step)**।
 > প্রতিটা math এ আগে **formula + প্রতিটা symbol এর মানে**, তারপর **প্রতিটা ধাপের হিসাব** দেওয়া — যাতে শুধু answer না, পুরো method টা বোঝা যায়।
 > সব math answer course এর formula দিয়ে Python এ verify করা ✅
-> Formula cheat sheet: [01-Moodle-Quiz Solutions](01-Moodle-Quiz-ZeroR-OneR-CM-DT-Solutions.md#formula-cheat-sheet) — Entropy, Gini ($p^2+q^2$), Chi-square ($\sqrt{(A-E)^2/E}$)।
+> Formula cheat sheet: [01-Moodle-Quiz Solutions](01-Moodle-Quiz-ZeroR-OneR-CM-DT-Solutions.md#formula-cheat-sheet) — Entropy, Gini ($`p^2+q^2`$), Chi-square ($`\sqrt{(A-E)^2/E}`$)।
 > Theory: [05-ZeroR-OneR-Confusion-Matrix-Decision-Tree](../notes/05-ZeroR-OneR-Confusion-Matrix-Decision-Tree.md)
 
 > ⚠️ Moodle এ option এর **অক্ষর (a/b/c/d) shuffle হয়** — অক্ষর না, **value** মুখস্থ রাখো।
@@ -16,42 +16,54 @@
 
 ### 1. Entropy — একটা set কতটা "mixed"
 
-$$H(S) = -p\log_2 p \;-\; q\log_2 q$$
+```math
+H(S) = -p\log_2 p \;-\; q\log_2 q
+```
 
 - **p** = set এ YES এর ratio = (YES সংখ্যা) / (মোট সংখ্যা)
 - **q** = set এ NO এর ratio = (NO সংখ্যা) / (মোট সংখ্যা), আর p + q = 1
-- **log₂** = base-2 log। Calculator এ: $\log_2 x = \dfrac{\ln x}{\ln 2}$ বা $\dfrac{\log_{10} x}{\log_{10} 2}$
+- **log₂** = base-2 log। Calculator এ: $`\log_2 x = \dfrac{\ln x}{\ln 2}`$ বা $`\dfrac{\log_{10} x}{\log_{10} 2}`$
 - **মাইনাস চিহ্ন কেন?** 0 আর 1 এর মাঝের সংখ্যার log negative হয়, তাই মাইনাস দিয়ে positive বানানো হয়।
 - **মান:** pure set (সব YES বা সব NO) → **0**; 50-50 set → **1** (2-class এ maximum)
 - কোনো class এর সংখ্যা 0 হলে ঐ term = 0 ধরো (0 × log 0 = 0)
 
 ### 2. Weighted (Combined) Entropy — split এর পরের entropy
 
-$$H_{split} = \frac{|S_1|}{|S|}H(S_1) + \frac{|S_2|}{|S|}H(S_2)$$
+```math
+H_{split} = \frac{|S_1|}{|S|}H(S_1) + \frac{|S_2|}{|S|}H(S_2)
+```
 
 - **|S₁|, |S₂|** = child set দুটোর size; **|S|** = মোট size (= |S₁| + |S₂|)
 - বড় set এর entropy বেশি weight পায়, কারণ বেশি instance ঐ set এ আছে।
 
 ### 3. Information Gain — split করে কতটা uncertainty কমলো
 
-$$IG = H(\text{parent}) - H_{split}$$
+```math
+IG = H(\text{parent}) - H_{split}
+```
 
 - IG **বেশি** = ভালো split। IG = 0 মানে split কোনো কাজে আসেনি।
 
 ### 4. Gini (এই course এর version) — set কতটা "pure"
 
-$$Gini(S) = p^2 + q^2 \qquad\qquad Gini_{split} = \frac{|S_1|}{|S|}Gini(S_1) + \frac{|S_2|}{|S|}Gini(S_2)$$
+```math
+Gini(S) = p^2 + q^2 \qquad\qquad Gini_{split} = \frac{|S_1|}{|S|}Gini(S_1) + \frac{|S_2|}{|S|}Gini(S_2)
+```
 
-- এই course এ Gini = $p^2+q^2$ → **বড় মান = বেশি pure = ভালো split** (pure set → 1, 50-50 → 0.5)
-- (অনেক বইয়ে Gini impurity = $1-p^2-q^2$, সেখানে **ছোট** মান ভালো। Exam এ course এর version use করো।)
+- এই course এ Gini = $`p^2+q^2`$ → **বড় মান = বেশি pure = ভালো split** (pure set → 1, 50-50 → 0.5)
+- (অনেক বইয়ে Gini impurity = $`1-p^2-q^2`$, সেখানে **ছোট** মান ভালো। Exam এ course এর version use করো।)
 
 ### 5. Chi-square (এই course এর version) — split টা "random" থেকে কতটা আলাদা
 
 প্রতিটা child set এর প্রতিটা class এর জন্য (প্রতিটা "cell"):
 
-$$\text{Expected } E = (\text{child set এর size}) \times (\text{parent এ ঐ class এর ratio})$$
+```math
+\text{Expected } E = (\text{child set এর size}) \times (\text{parent এ ঐ class এর ratio})
+```
 
-$$\chi_{cell} = \sqrt{\frac{(A - E)^2}{E}} \qquad\qquad \text{Total } \chi = \sum \chi_{cell}$$
+```math
+\chi_{cell} = \sqrt{\frac{(A - E)^2}{E}} \qquad\qquad \text{Total } \chi = \sum \chi_{cell}
+```
 
 - **A (Actual)** = child set এ ঐ class এর আসল সংখ্যা
 - **E (Expected)** = split টা যদি useless হতো (child এর ratio parent এর মতোই থাকতো), তাহলে কত থাকার কথা ছিল
@@ -108,7 +120,9 @@ Decision Tree learning এর classic **issues** (Mitchell, *Machine Learning*):
 ### কিভাবে solve করবে
 
 **Formula:** Combined entropy = Weighted entropy (Formula 2)
-$$H_{split} = \frac{|S_1|}{|S|}H(S_1) + \frac{|S_2|}{|S|}H(S_2), \qquad H = -p\log_2 p - q\log_2 q$$
+```math
+H_{split} = \frac{|S_1|}{|S|}H(S_1) + \frac{|S_2|}{|S|}H(S_2), \qquad H = -p\log_2 p - q\log_2 q
+```
 
 **Step 1 — Set গুলোর size:** |S1| = 15 + 3 = 18, |S2| = 10 + 2 = 12, |S| = 18 + 12 = 30
 
@@ -123,7 +137,9 @@ $$H_{split} = \frac{|S_1|}{|S|}H(S_1) + \frac{|S_2|}{|S|}H(S_2), \qquad H = -p\l
 - H(S2) = **0.650**
 
 **Step 4 — Weighted (combined) entropy:**
-$$\frac{18}{30}(0.650) + \frac{12}{30}(0.650) = 0.6 \times 0.650 + 0.4 \times 0.650 = 0.390 + 0.260 = \mathbf{0.65}$$
+```math
+\frac{18}{30}(0.650) + \frac{12}{30}(0.650) = 0.6 \times 0.650 + 0.4 \times 0.650 = 0.390 + 0.260 = \mathbf{0.65}
+```
 
 > Shortcut: দুইটা child এর ratio একই হলে combined entropy = ঐ ratio এর entropy। Parent ও 25:5 = 5:1 → H(parent) = 0.65 → Information Gain = 0.65 − 0.65 = 0।
 
@@ -169,7 +185,9 @@ Slide (Data Mining Overview) এর **"Tree Induction Algorithms"** list: **ID3,
 ### কিভাবে solve করবে
 
 **Formula (Formula 5):**
-$$E = (\text{set size}) \times (\text{parent ratio}), \qquad \chi_{cell} = \sqrt{\frac{(A-E)^2}{E}}, \qquad \text{Total} = \text{৪টা cell এর যোগফল}$$
+```math
+E = (\text{set size}) \times (\text{parent ratio}), \qquad \chi_{cell} = \sqrt{\frac{(A-E)^2}{E}}, \qquad \text{Total} = \text{৪টা cell এর যোগফল}
+```
 
 **Step 1 — Parent ratio** (মোট 10 + 20 = 30):
 - YES ratio = 10/30 = **1/3**, NO ratio = 20/30 = **2/3**
@@ -212,14 +230,16 @@ $$E = (\text{set size}) \times (\text{parent ratio}), \qquad \chi_{cell} = \sqrt
 
 ### কিভাবে solve করবে
 
-**Formula (Formula 1):** $H = -p\log_2 p - q\log_2 q$
+**Formula (Formula 1):** $`H = -p\log_2 p - q\log_2 q`$
 
 **Step 1 — Ratio:** "Equally likely" মানে YES আর NO সমান → p = 0.5, q = 0.5
 
 **Step 2 — Log:** log₂(0.5) = −1 (কারণ 2⁻¹ = 0.5)
 
 **Step 3 — Entropy:**
-$$H = -0.5 \times (-1) - 0.5 \times (-1) = 0.5 + 0.5 = \mathbf{1.00}$$
+```math
+H = -0.5 \times (-1) - 0.5 \times (-1) = 0.5 + 0.5 = \mathbf{1.00}
+```
 
 > মনে রাখো: Pure node → Entropy **0**; 50-50 node → Entropy **1** (2-class এ maximum)। Entropy শুধু **ratio** এর উপর নির্ভর করে, instance সংখ্যার উপর না — তাই "Insufficient Data" ভুল।
 
@@ -238,7 +258,7 @@ $$H = -0.5 \times (-1) - 0.5 \times (-1) = 0.5 + 0.5 = \mathbf{1.00}$$
 
 ### কিভাবে solve করবে
 
-**Formula (Formula 5):** $E = \text{set size} \times \text{parent ratio}$, $\chi_{cell} = \sqrt{(A-E)^2/E}$, Total = ৪টা cell যোগ
+**Formula (Formula 5):** $`E = \text{set size} \times \text{parent ratio}`$, $`\chi_{cell} = \sqrt{(A-E)^2/E}`$, Total = ৪টা cell যোগ
 
 **Step 1 — Parent ratio** (মোট 30): YES = 10/30 = **1/3**, NO = 20/30 = **2/3**
 
@@ -280,7 +300,9 @@ $$H = -0.5 \times (-1) - 0.5 \times (-1) = 0.5 + 0.5 = \mathbf{1.00}$$
 ### কিভাবে solve করবে
 
 **Formula (Formula 4, course version):**
-$$Gini(S) = p^2 + q^2, \qquad Gini_{split} = \frac{|S_1|}{|S|}Gini(S_1) + \frac{|S_2|}{|S|}Gini(S_2)$$
+```math
+Gini(S) = p^2 + q^2, \qquad Gini_{split} = \frac{|S_1|}{|S|}Gini(S_1) + \frac{|S_2|}{|S|}Gini(S_2)
+```
 - p = YES ratio, q = NO ratio; **বড় Gini = বেশি pure = ভালো split** → যে feature এর weighted Gini বেশি, সেটা pick হবে।
 
 **Step 1 — Split on Y** (মোট 7 + 8 = 15):
@@ -312,7 +334,7 @@ $$Gini(S) = p^2 + q^2, \qquad Gini_{split} = \frac{|S_1|}{|S|}Gini(S_1) + \frac{
 
 ### কিভাবে solve করবে
 
-**Formula (Formula 5):** $E = \text{set size} \times \text{parent ratio}$, $\chi_{cell} = \sqrt{(A-E)^2/E}$
+**Formula (Formula 5):** $`E = \text{set size} \times \text{parent ratio}`$, $`\chi_{cell} = \sqrt{(A-E)^2/E}`$
 - প্রশ্নে **"for the set S1"** → শুধু S1 এর ২টা cell (YES আর NO) যোগ করবে, S2 লাগবে না।
 
 **Step 1 — Parent ratio** (মোট 20 + 25 = 45): YES = 20/45 = **0.4444**, NO = 25/45 = **0.5556**
@@ -349,7 +371,7 @@ $$Gini(S) = p^2 + q^2, \qquad Gini_{split} = \frac{|S_1|}{|S|}Gini(S_1) + \frac{
 
 ### কিভাবে solve করবে
 
-**Formula (Formula 5):** $E = \text{set size} \times \text{parent ratio}$, $\chi_{cell} = \sqrt{(A-E)^2/E}$, Total = ৪টা cell যোগ
+**Formula (Formula 5):** $`E = \text{set size} \times \text{parent ratio}`$, $`\chi_{cell} = \sqrt{(A-E)^2/E}`$, Total = ৪টা cell যোগ
 
 **Step 1 — Parent ratio** (মোট 45): YES = 20/45 = 4/9, NO = 25/45 = 5/9 → YES : NO = **4 : 5**
 
@@ -362,7 +384,7 @@ $$Gini(S) = p^2 + q^2, \qquad Gini_{split} = \frac{|S_1|}{|S|}Gini(S_1) + \frac{
 | S1 | 18 | 8 | 18 × 4/9 = **8** | 10 | 18 × 5/9 = **10** |
 | S2 | 27 | 12 | 27 × 4/9 = **12** | 15 | 27 × 5/9 = **15** |
 
-**Step 4 — প্রতিটা cell:** প্রতিটা cell এ A = E → A − E = 0 → $\sqrt{0^2/E} = 0$
+**Step 4 — প্রতিটা cell:** প্রতিটা cell এ A = E → A − E = 0 → $`\sqrt{0^2/E} = 0`$
 
 **Step 5 — Total = 0 + 0 + 0 + 0 = 0.00** (split টা কোনো information দেয় না)
 
@@ -383,7 +405,7 @@ $$Gini(S) = p^2 + q^2, \qquad Gini_{split} = \frac{|S_1|}{|S|}Gini(S_1) + \frac{
 
 ### কিভাবে solve করবে
 
-**Formula (Formula 5):** $E = \text{set size} \times \text{parent ratio}$, $\chi_{cell} = \sqrt{(A-E)^2/E}$
+**Formula (Formula 5):** $`E = \text{set size} \times \text{parent ratio}`$, $`\chi_{cell} = \sqrt{(A-E)^2/E}`$
 - **"for the set S1"** → শুধু S1 এর ২টা cell।
 
 **Step 1 — Parent ratio** (মোট 15 + 20 = 35): YES = 15/35 = **0.4286**, NO = 20/35 = **0.5714**
@@ -419,7 +441,9 @@ $$Gini(S) = p^2 + q^2, \qquad Gini_{split} = \frac{|S_1|}{|S|}Gini(S_1) + \frac{
 ### কিভাবে solve করবে
 
 **Formula (Formula 1, 2, 3):**
-$$IG = H(\text{parent}) - \left[\frac{|S_1|}{|S|}H(S_1) + \frac{|S_2|}{|S|}H(S_2)\right], \qquad H = -p\log_2 p - q\log_2 q$$
+```math
+IG = H(\text{parent}) - \left[\frac{|S_1|}{|S|}H(S_1) + \frac{|S_2|}{|S|}H(S_2)\right], \qquad H = -p\log_2 p - q\log_2 q
+```
 - H(parent) প্রশ্নেই দেওয়া = **0.98**
 
 **Step 1 — Set গুলোর size:** |S1| = 4 + 2 = 6, |S2| = 3 + 3 = 6, |S| = 12
@@ -433,7 +457,9 @@ $$IG = H(\text{parent}) - \left[\frac{|S_1|}{|S|}H(S_1) + \frac{|S_2|}{|S|}H(S_2
 **Step 3 — H(S2)** (3 Yes, 3 No): p = q = 0.5 → 50-50 set → H(S2) = **1.000**
 
 **Step 4 — Weighted entropy:**
-$$\frac{6}{12}(0.918) + \frac{6}{12}(1.000) = 0.459 + 0.500 = 0.959$$
+```math
+\frac{6}{12}(0.918) + \frac{6}{12}(1.000) = 0.459 + 0.500 = 0.959
+```
 
 **Step 5 — Information Gain:** IG = 0.98 − 0.959 = 0.021 ≈ **0.02**
 
@@ -454,7 +480,7 @@ $$\frac{6}{12}(0.918) + \frac{6}{12}(1.000) = 0.459 + 0.500 = 0.959$$
 
 ### কিভাবে solve করবে
 
-**Formula (Formula 1, 2):** $H = -p\log_2 p - q\log_2 q$; weighted $H_{split} = \sum \frac{|S_i|}{|S|}H(S_i)$
+**Formula (Formula 1, 2):** $`H = -p\log_2 p - q\log_2 q`$; weighted $`H_{split} = \sum \frac{|S_i|}{|S|}H(S_i)`$
 - Entropy দিয়ে pick করা মানে: যে feature এর weighted entropy **কম** (= IG বেশি), সেটা pick হবে।
 
 **Step 1 — Ratio check:** সব set এর YES : NO = **2 : 1** ({8,4}, {4,2}, {6,3}, {6,3}) → p = 2/3, q = 1/3
@@ -485,7 +511,7 @@ $$\frac{6}{12}(0.918) + \frac{6}{12}(1.000) = 0.459 + 0.500 = 0.959$$
 
 1. **Same-ratio trick** (Q2, Q9, Q12): child এর ratio parent এর সমান → Chi-square = 0, IG = 0, সব split equivalent। হিসাব করার আগে ratio চেক করো — সময় বাঁচবে।
 2. **All-YES / All-NO split** (Q6, Q8): perfect split → chi-square অনেক বড়।
-3. **Gini direction**: এই course এ $p^2+q^2$ → **বড় মান = ভালো split**। Entropy তে **ছোট মান = ভালো split**।
+3. **Gini direction**: এই course এ $`p^2+q^2`$ → **বড় মান = ভালো split**। Entropy তে **ছোট মান = ভালো split**।
 4. **"Total for the split"** মানে দুইটা set এর সব cell যোগ; **"for the set S1"** মানে শুধু S1 এর দুইটা cell।
 5. **Chi-square এ √ ভুলবে না**: √ ছাড়া যোগ করলে option এর সাথে মিলবে না (যেমন Q4 এ 8.21 আসে, সঠিক 5.64)।
 6. **Table বানিয়ে হিসাব করো**: Set | Size | A | E | A − E | (A − E)² | ÷E | √ — ভুল কম হয়, partial marks ও পাবে।

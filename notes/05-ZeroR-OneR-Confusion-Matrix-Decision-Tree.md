@@ -54,7 +54,7 @@ ZeroR, OneR, আর Decision Tree, তিনটাতেই **এই একই d
 | Count | **9** | 5 |
 
 - Majority = **Yes**, তাই ZeroR model হলো **"Play Golf = Yes"** (সবার জন্য)।
-- Accuracy $= \dfrac{9}{14} = \mathbf{0.64}$
+- Accuracy $`= \dfrac{9}{14} = \mathbf{0.64}`$
 
 **ZeroR-এর Confusion Matrix** (rows = Prediction, columns = Actual):
 
@@ -163,7 +163,7 @@ ZeroR-এর accuracy 0.64 থেকে OneR-এ 0.71, অর্থাৎ improv
 ## 3. Confusion Matrix (CM)
 
 ### Concept
-**Confusion matrix** একটা $N \times N$ table (N = class সংখ্যা)। এটা দেখায় model কতগুলো prediction ঠিক করেছে আর কতগুলো ভুল, actual label-এর সাথে তুলনা করে। যেকোনো classifier-এর **performance evaluate** করতে এটা use হয়।
+**Confusion matrix** একটা $`N \times N`$ table (N = class সংখ্যা)। এটা দেখায় model কতগুলো prediction ঠিক করেছে আর কতগুলো ভুল, actual label-এর সাথে তুলনা করে। যেকোনো classifier-এর **performance evaluate** করতে এটা use হয়।
 
 ### The 4 basic terms (whiteboard rule)
 
@@ -193,17 +193,17 @@ ZeroR-এর accuracy 0.64 থেকে OneR-এ 0.71, অর্থাৎ improv
 
 | Metric | Formula | মানে (বাংলায়) |
 |---|---|---|
-| **Accuracy** (recognition rate) | $\dfrac{TP+TN}{N}$ | মোট prediction-এর মধ্যে কতগুলো ঠিক |
-| **Error rate** / Misclassification rate | $\dfrac{FP+FN}{N} = 1 - \text{Accuracy}$ | মোট কতগুলো ভুল |
-| **Recall** = Sensitivity = **TPR** | $\dfrac{TP}{TP+FN} = \dfrac{TP}{AP}$ | আসল Yes-গুলোর কতটা ধরতে পেরেছি (**completeness**) |
-| **Precision** = PPV | $\dfrac{TP}{TP+FP} = \dfrac{TP}{PP}$ | যেগুলোকে Yes বলেছি, তার কতগুলো সত্যিই Yes (**exactness**) |
-| **Specificity** = TNR | $\dfrac{TN}{TN+FP} = \dfrac{TN}{AN}$ | আসল No-গুলোর কতটা ঠিকভাবে No বলেছি |
-| **FPR** (False Positive Rate) | $\dfrac{FP}{FP+TN} = 1 - \text{Specificity}$ | আসল No-কে ভুল করে Yes বলার হার |
-| **NPV** | $\dfrac{TN}{TN+FN} = \dfrac{TN}{PN}$ | যেগুলোকে No বলেছি, তার কতগুলো সত্যিই No |
-| **Prevalence** | $\dfrac{AP}{N}$ | data-তে Yes কত ঘন ঘন আসে |
-| **Null error rate** | $\dfrac{\text{minority count}}{N}$ | সবসময় majority predict করলে error কত (ZeroR-এর error) |
-| **F1 score** | $\dfrac{2 \cdot P \cdot R}{P + R}$ | Precision আর Recall-এর **harmonic mean** |
-| **Fβ score** | $\dfrac{(1+\beta^2)\, P \cdot R}{\beta^2 P + R}$ | Weighted F, যেখানে Recall-কে β গুণ বেশি গুরুত্ব দেওয়া হয় |
+| **Accuracy** (recognition rate) | $`\dfrac{TP+TN}{N}`$ | মোট prediction-এর মধ্যে কতগুলো ঠিক |
+| **Error rate** / Misclassification rate | $`\dfrac{FP+FN}{N} = 1 - \text{Accuracy}`$ | মোট কতগুলো ভুল |
+| **Recall** = Sensitivity = **TPR** | $`\dfrac{TP}{TP+FN} = \dfrac{TP}{AP}`$ | আসল Yes-গুলোর কতটা ধরতে পেরেছি (**completeness**) |
+| **Precision** = PPV | $`\dfrac{TP}{TP+FP} = \dfrac{TP}{PP}`$ | যেগুলোকে Yes বলেছি, তার কতগুলো সত্যিই Yes (**exactness**) |
+| **Specificity** = TNR | $`\dfrac{TN}{TN+FP} = \dfrac{TN}{AN}`$ | আসল No-গুলোর কতটা ঠিকভাবে No বলেছি |
+| **FPR** (False Positive Rate) | $`\dfrac{FP}{FP+TN} = 1 - \text{Specificity}`$ | আসল No-কে ভুল করে Yes বলার হার |
+| **NPV** | $`\dfrac{TN}{TN+FN} = \dfrac{TN}{PN}`$ | যেগুলোকে No বলেছি, তার কতগুলো সত্যিই No |
+| **Prevalence** | $`\dfrac{AP}{N}`$ | data-তে Yes কত ঘন ঘন আসে |
+| **Null error rate** | $`\dfrac{\text{minority count}}{N}`$ | সবসময় majority predict করলে error কত (ZeroR-এর error) |
+| **F1 score** | $`\dfrac{2 \cdot P \cdot R}{P + R}`$ | Precision আর Recall-এর **harmonic mean** |
+| **Fβ score** | $`\dfrac{(1+\beta^2)\, P \cdot R}{\beta^2 P + R}`$ | Weighted F, যেখানে Recall-কে β গুণ বেশি গুরুত্ব দেওয়া হয় |
 
 - Perfect score = 1.0। Precision আর Recall-এর মধ্যে সাধারণত **inverse relationship** থাকে (একটা বাড়ালে অন্যটা কমে)।
 - ROC curve মানে TPR (y-axis) vs FPR (x-axis), threshold বদলে বদলে plot করা হয়।
@@ -213,7 +213,7 @@ ZeroR-এর accuracy 0.64 থেকে OneR-এ 0.71, অর্থাৎ improv
 - **β > 1** (যেমন F2, F3) হলে **Recall-কে বেশি গুরুত্ব**। Medical diagnosis-এ এটা দরকার, কারণ কোনো রোগী miss করা (FN) চলবে না।
 - **β < 1** (যেমন F0.5) হলে **Precision-কে বেশি গুরুত্ব**। এখানে false alarm (FP) কমানো জরুরি, যেমন spam filter।
 - Fβ "assigns **β times as much weight to recall** as to precision."
-- F2 formula: $F_2 = \dfrac{5PR}{4P + R}$। F0.5 formula: $F_{0.5} = \dfrac{1.25\,PR}{0.25P + R}$।
+- F2 formula: $`F_2 = \dfrac{5PR}{4P + R}`$। F0.5 formula: $`F_{0.5} = \dfrac{1.25\,PR}{0.25P + R}`$।
 
 ---
 
@@ -297,15 +297,19 @@ ID3 হলো **top-down, greedy search, no backtracking**। প্রতিট
 
 ### 4.2 Entropy
 
-$$E(S) = \sum_{i=1}^{c} -p_i \log_2 p_i$$
+```math
+E(S) = \sum_{i=1}^{c} -p_i \log_2 p_i
+```
 
 - **Entropy** মানে sample-এর **impurity / uncertainty** কতটা।
 - পুরো homogeneous (সব Yes বা সব No) হলে **E = 0**
 - 50% Yes / 50% No হলে **E = 1** (binary-তে maximum)
-- নিয়ম: $0 \log_2 0 = 0$
+- নিয়ম: $`0 \log_2 0 = 0`$
 
 **Two-attribute entropy** (split-এর পরে weighted average):
-$$E(T, X) = \sum_{c \in X} P(c)\, E(c)$$
+```math
+E(T, X) = \sum_{c \in X} P(c)\, E(c)
+```
 
 **Quick values মুখস্থ রাখো (binary):**
 
@@ -322,7 +326,9 @@ $$E(T, X) = \sum_{c \in X} P(c)\, E(c)$$
 
 ### 4.3 Information Gain (IG)
 
-$$IG(T, X) = E(T) - E(T, X)$$
+```math
+IG(T, X) = E(T) - E(T, X)
+```
 
 Split-এর পরে entropy কতটা **কমলো**, সেটাই IG। **যার IG সবচেয়ে বেশি, সেই attribute হবে decision node।**
 
@@ -333,8 +339,12 @@ Split-এর পরে entropy কতটা **কমলো**, সেটাই IG
 #### Step 1: Target-এর Entropy
 Yes = 9, No = 5, N = 14
 
-$$E(\text{PlayGolf}) = E(9,5) = -\tfrac{9}{14}\log_2\tfrac{9}{14} - \tfrac{5}{14}\log_2\tfrac{5}{14}$$
-$$= -(0.643)\log_2(0.643) - (0.357)\log_2(0.357) = 0.4098 + 0.5305 = \mathbf{0.940}$$
+```math
+E(\text{PlayGolf}) = E(9,5) = -\tfrac{9}{14}\log_2\tfrac{9}{14} - \tfrac{5}{14}\log_2\tfrac{5}{14}
+```
+```math
+= -(0.643)\log_2(0.643) - (0.357)\log_2(0.357) = 0.4098 + 0.5305 = \mathbf{0.940}
+```
 
 #### Step 2: প্রতিটা attribute-এর জন্য E(T, X) আর IG
 
@@ -346,8 +356,12 @@ $$= -(0.643)\log_2(0.643) - (0.357)\log_2(0.357) = 0.4098 + 0.5305 = \mathbf{0.9
 | Overcast | 4 | 0 | 4 | **0** |
 | Rainy | 2 | 3 | 5 | **0.971** |
 
-$$E(T,\text{Outlook}) = \tfrac{5}{14}(0.971) + \tfrac{4}{14}(0) + \tfrac{5}{14}(0.971) = 0.347 + 0 + 0.347 = \mathbf{0.693}$$
-$$IG(\text{Outlook}) = 0.940 - 0.693 = \mathbf{0.247}$$
+```math
+E(T,\text{Outlook}) = \tfrac{5}{14}(0.971) + \tfrac{4}{14}(0) + \tfrac{5}{14}(0.971) = 0.347 + 0 + 0.347 = \mathbf{0.693}
+```
+```math
+IG(\text{Outlook}) = 0.940 - 0.693 = \mathbf{0.247}
+```
 
 **(b) Temp**
 
@@ -357,8 +371,12 @@ $$IG(\text{Outlook}) = 0.940 - 0.693 = \mathbf{0.247}$$
 | Mild | 4 | 2 | 6 | 0.390 + 0.528 = 0.918 |
 | Cool | 3 | 1 | 4 | 0.811 |
 
-$$E(T,\text{Temp}) = \tfrac{4}{14}(1) + \tfrac{6}{14}(0.918) + \tfrac{4}{14}(0.811) = 0.286 + 0.394 + 0.232 = \mathbf{0.911}$$
-$$IG(\text{Temp}) = 0.940 - 0.911 = \mathbf{0.029}$$
+```math
+E(T,\text{Temp}) = \tfrac{4}{14}(1) + \tfrac{6}{14}(0.918) + \tfrac{4}{14}(0.811) = 0.286 + 0.394 + 0.232 = \mathbf{0.911}
+```
+```math
+IG(\text{Temp}) = 0.940 - 0.911 = \mathbf{0.029}
+```
 
 **(c) Humidity**
 
@@ -367,8 +385,12 @@ $$IG(\text{Temp}) = 0.940 - 0.911 = \mathbf{0.029}$$
 | High | 3 | 4 | 7 | 0.5239 + 0.4613 = 0.985 |
 | Normal | 6 | 1 | 7 | 0.1906 + 0.4011 = 0.592 |
 
-$$E(T,\text{Humidity}) = \tfrac{7}{14}(0.985) + \tfrac{7}{14}(0.592) = \mathbf{0.788}$$
-$$IG(\text{Humidity}) = 0.940 - 0.788 = \mathbf{0.152}$$
+```math
+E(T,\text{Humidity}) = \tfrac{7}{14}(0.985) + \tfrac{7}{14}(0.592) = \mathbf{0.788}
+```
+```math
+IG(\text{Humidity}) = 0.940 - 0.788 = \mathbf{0.152}
+```
 
 **(d) Windy**
 
@@ -377,8 +399,12 @@ $$IG(\text{Humidity}) = 0.940 - 0.788 = \mathbf{0.152}$$
 | False | 6 | 2 | 8 | 0.311 + 0.500 = 0.811 |
 | True | 3 | 3 | 6 | 1.000 |
 
-$$E(T,\text{Windy}) = \tfrac{8}{14}(0.811) + \tfrac{6}{14}(1) = 0.464 + 0.429 = \mathbf{0.892}$$
-$$IG(\text{Windy}) = 0.940 - 0.892 = \mathbf{0.048}$$
+```math
+E(T,\text{Windy}) = \tfrac{8}{14}(0.811) + \tfrac{6}{14}(1) = 0.464 + 0.429 = \mathbf{0.892}
+```
+```math
+IG(\text{Windy}) = 0.940 - 0.892 = \mathbf{0.048}
+```
 
 #### Step 3: Highest IG বেছে নাও
 
@@ -455,12 +481,14 @@ Root থেকে প্রতিটা leaf পর্যন্ত একটা 
 দুইভাবে লেখা হয়, তাই **convention সাবধানে খেয়াল করবে:**
 
 **(i) Gini Impurity** (CART / Madhu Sanjeevi). এখানে **কম মানে ভালো**:
-$$Gini = 1 - \sum_{i=1}^{k} p_i^2 \quad\quad (\text{binary: } 1 - p^2 - q^2)$$
+```math
+Gini = 1 - \sum_{i=1}^{k} p_i^2 \quad\quad (\text{binary: } 1 - p^2 - q^2)
+```
 - Pure node হলে 0। Binary-তে max = 1 − 0.5² − 0.5² = **0.5**। k class হলে max = **1 − 1/k**।
 - Split-এর Gini = sub-node Gini-গুলোর **weighted average**। **Gini gain = Gini(parent) − weighted Gini**, যেটা সবচেয়ে বেশি সেটা নাও।
 
 **Play Golf-এ Gini impurity:**
-- Root: $1 - (9/14)^2 - (5/14)^2 = 1 - 0.413 - 0.128 = \mathbf{0.459}$
+- Root: $`1 - (9/14)^2 - (5/14)^2 = 1 - 0.413 - 0.128 = \mathbf{0.459}`$
 - Outlook: Sunny = 1 − 0.6² − 0.4² = 0.48, Overcast = 0, Rainy = 0.48, তাই weighted = (5/14)(0.48)·2 = **0.343**, gain = **0.116** ★
 - Humidity: High = 1 − (3/7)² − (4/7)² = 0.490, Normal = 1 − (6/7)² − (1/7)² = 0.245, তাই weighted = **0.367**, gain = 0.092
 - Windy: weighted = (8/14)(0.375) + (6/14)(0.5) = **0.429**, gain = 0.031
@@ -468,13 +496,13 @@ $$Gini = 1 - \sum_{i=1}^{k} p_i^2 \quad\quad (\text{binary: } 1 - p^2 - q^2)$$
 
 Gini দিয়েও **Outlook** best। ID3-এর result-এর সাথে মিলে যায়।
 
-**(ii) "Gini score" = $p^2 + q^2$** (Rishabh Jain / Analytics-Vidhya style). এখানে **বেশি মানে বেশি homogeneous**, তাই বেশি মানে ভালো।
+**(ii) "Gini score" = $`p^2 + q^2`$** (Rishabh Jain / Analytics-Vidhya style). এখানে **বেশি মানে বেশি homogeneous**, তাই বেশি মানে ভালো।
 
 **Cricket example:** 30 জন student, 15 জন cricket খেলে (50%)।
 - Gender: Female 10 জন (2 play, 8 not), Male 20 জন (13 play, 7 not)
 - Class: IX 14 জন (6 play, 8 not), X 16 জন (9 play, 7 not)
 
-| Split | Sub-node | $p^2+q^2$ | Weighted |
+| Split | Sub-node | $`p^2+q^2`$ | Weighted |
 |---|---|---|---|
 | Gender | Female (0.2, 0.8) | 0.04 + 0.64 = **0.68** | |
 | | Male (0.65, 0.35) | 0.4225 + 0.1225 = **0.545 ≈ 0.55** | (10/30)(0.68) + (20/30)(0.55) = **0.59** |
@@ -490,8 +518,10 @@ Gender-এর score (0.59) > Class-এর score (0.51), তাই **Gender-এ s
 Sub-node আর parent node-এর পার্থক্য statistically significant কি না, সেটা মাপে। Observed (Actual) আর Expected frequency-র standardized difference দেখে।
 - Categorical target-এ কাজ করে। **2 বা তার বেশি split** করতে পারে। **Chi-square যত বেশি, split তত significant (ভালো)।** এভাবে যে tree বানায় তার নাম **CHAID**।
 - Source-এর formula (প্রতিটা cell-এর জন্য):
-$$\chi = \sqrt{\frac{(\text{Actual} - \text{Expected})^2}{\text{Expected}}}$$
-(Standard Pearson χ²-এ square root নেওয়া হয় না: $\chi^2 = \sum \frac{(A-E)^2}{E}$। Exam-এ source-এর version দিলে সেটাই ব্যবহার করবে।)
+```math
+\chi = \sqrt{\frac{(\text{Actual} - \text{Expected})^2}{\text{Expected}}}
+```
+(Standard Pearson χ²-এ square root নেওয়া হয় না: $`\chi^2 = \sum \frac{(A-E)^2}{E}`$। Exam-এ source-এর version দিলে সেটাই ব্যবহার করবে।)
 - Split-এর chi-square = সব node-এর Success আর Failure-এর chi value যোগ করে।
 
 **Cricket example** (parent-এ play-এর probability 50%, তাই Expected = node size × 0.5):
@@ -511,7 +541,9 @@ Gender (4.58) > Class (1.46), তাই **Gender split বেশি significant�
 
 ### 4.7 Reduction in Variance (continuous target)
 
-$$\text{Variance} = \frac{\sum (X - \bar{X})^2}{n}$$
+```math
+\text{Variance} = \frac{\sum (X - \bar{X})^2}{n}
+```
 **Variance যত কম, node তত homogeneous।** Split-এর variance = sub-node variance-গুলোর **weighted average**। যে split-এ variance সবচেয়ে কম, সেটা নাও।
 
 **Cricket example** (play = 1, not play = 0):
@@ -534,7 +566,9 @@ Target যখন **numeric** (যেমন Hours Played), তখন ID3-তে *
 - **Coefficient of Variation, CV = S/x̄ × 100%:** কখন branching থামাতে হবে (যেমন CV < 10% হলে বা n ≤ 3 হলে stop)
 - **Average:** leaf node-এর value (prediction)
 
-$$S = \sqrt{\frac{\sum (x-\bar{x})^2}{n}}, \qquad S(T,X) = \sum_{c\in X} P(c)\,S(c), \qquad SDR(T,X) = S(T) - S(T,X)$$
+```math
+S = \sqrt{\frac{\sum (x-\bar{x})^2}{n}}, \qquad S(T,X) = \sum_{c\in X} P(c)\,S(c), \qquad SDR(T,X) = S(T) - S(T,X)
+```
 
 **Dataset:** একই Play Golf predictors, target = Hours Played:
 25, 30, 46, 45, 52, 23, 43, 35, 38, 46, 48, 52, 44, 30 (row 1 থেকে 14)
@@ -550,8 +584,12 @@ n = 14, x̄ = 557/14 = **39.8**, S = **9.32**, CV = 9.32/39.8 = **23%**
 | Rainy | 25, 30, 35, 38, 48 | 35.2 | 7.78 | 5 |
 | Sunny | 45, 52, 23, 46, 30 | 39.2 | 10.87 | 5 |
 
-$$S(\text{Hours},\text{Outlook}) = \tfrac{4}{14}(3.49) + \tfrac{5}{14}(7.78) + \tfrac{5}{14}(10.87) = \mathbf{7.66}$$
-$$SDR = 9.32 - 7.66 = \mathbf{1.66}$$
+```math
+S(\text{Hours},\text{Outlook}) = \tfrac{4}{14}(3.49) + \tfrac{5}{14}(7.78) + \tfrac{5}{14}(10.87) = \mathbf{7.66}
+```
+```math
+SDR = 9.32 - 7.66 = \mathbf{1.66}
+```
 
 **Step 3: সব attribute**
 
@@ -595,9 +633,9 @@ $$SDR = 9.32 - 7.66 = \mathbf{1.66}$$
 - **Missing values** (C4.5-এ "?" দিয়ে mark করা হয়, gain হিসাবে বাদ দেওয়া হয়)।
 
 **Entropy-based binning example (O-ring failure, 24 records: 7 Y, 17 N):**
-- $E(7,17) = E(0.29, 0.71) = 0.871$
+- $`E(7,17) = E(0.29, 0.71) = 0.871`$
 - Cut "≤60 / >60": (3Y, 0N) আর (4Y, 17N). E(3,0) = 0, E(4,17) = E(0.19, 0.81) = 0.702
-  - $E = \tfrac{3}{24}(0) + \tfrac{21}{24}(0.702) = 0.615$, তাই **Gain = 0.871 − 0.615 = 0.256** ★
+  - $`E = \tfrac{3}{24}(0) + \tfrac{21}{24}(0.702) = 0.615`$, তাই **Gain = 0.871 − 0.615 = 0.256** ★
 - Cut ≤70: Gain = 0.101. Cut ≤75: Gain = 0.148
 - তাই best cut হলো **(≤60, >60)**।
 
@@ -612,7 +650,7 @@ $$SDR = 9.32 - 7.66 = \mathbf{1.66}$$
 3. **Precision বনাম Recall:** দুটোরই numerator TP। Precision-এর denominator **Predicted** Yes, Recall-এর denominator **Actual** Yes।
 4. **Specificity = TN/AN**, আর **FPR = 1 − Specificity**।
 5. **F1 হলো harmonic mean, arithmetic mean না।** Fβ formula-তে **β² শুধু denominator-এর P-এর সাথে** গুণ হয়।
-6. Entropy হিসাবে $\log_2$ ব্যবহার করবে। Calculator-এ $\log_2 x = \ln x / \ln 2$ বা $\log_{10}x / 0.30103$।
+6. Entropy হিসাবে $`\log_2`$ ব্যবহার করবে। Calculator-এ $`\log_2 x = \ln x / \ln 2`$ বা $`\log_{10}x / 0.30103`$।
 7. Pure node মানে E = 0 আর leaf। 50/50 split মানে E = 1 (binary)।
 8. **IG বেশি মানে ভালো। Gini impurity কম মানে ভালো। Chi-square বেশি মানে ভালো। Variance কম মানে ভালো। SDR বেশি মানে ভালো।**
 9. OneR-এ **error = প্রতিটা value-র minority count-এর যোগফল**। Tie হলে যেকোনো একটা বলে দিয়ে উল্লেখ করো যে tie হয়েছে।
